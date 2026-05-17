@@ -57,12 +57,12 @@ function Contact() {
     });
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log("Formulaire envoyé :", formData);
-    setSubmitted(true);
-    setFormData({ name: "", email: "", message: "" });
-  }
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   console.log("Formulaire envoyé :", formData);
+  //   setSubmitted(true);
+  //   setFormData({ name: "", email: "", message: "" });
+  // }
 
   useEffect(() => {
     const section = sectionRef.current;
