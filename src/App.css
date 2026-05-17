@@ -1093,8 +1093,31 @@ img {
   .skills-list {
     justify-content: center;
   }
+  .hero-name {
+    text-align: center;
+  }
 }
-
+@media (max-width: 400px) {
+  .navbar-links {
+    gap: 5px;
+    position: relative;
+    left: 25px;
+  }
+  .navbar-links span {
+    display: none;
+  }
+  .navbar-logo a img {
+    width: 30px;
+    position: relative;
+    right: 20px;
+  }
+  .hero-name {
+    text-align: center;
+  }
+  .hero-title {
+    font-size: 19px;
+  }
+}
 /*-----------CV image ---------------*/
 /* .cvimage {
   width: 100%;
