@@ -1,36 +1,3 @@
-// // components/Footer.jsx
-// import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
-
-// function Footer() {
-//   const year = new Date().getFullYear();
-
-//   return (
-//     <footer className="footer">
-//       <div className="footer-links">
-//         <a
-//           href="https://github.com/adriano-4"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           <FaGithub style={{ marginRight: "6px", verticalAlign: "middle" }} />
-//           GitHub
-//         </a>
-//         <a
-//           href="https://www.linkedin.com/in/adriano-randrianambinina-aa5285336/"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           <FaLinkedin style={{ marginRight: "6px", verticalAlign: "middle" }} />
-//           LinkedIn
-//         </a>
-//       </div>
-//     </footer>
-//   );
-// }
-
-// export default Footer;
-// components/Footer.jsx
-
 import {
   FaGithub,
   FaLinkedin,
@@ -39,6 +6,7 @@ import {
   FaFileContract,
   FaPhone,
 } from "react-icons/fa";
+import logotokyadriano from "../assets/logo toky adriano.png";
 
 function Footer() {
   const year = new Date().getFullYear();
@@ -47,7 +15,7 @@ function Footer() {
     <footer className="footer">
       <div className="footermit">
         <div className="footer_image">
-          <img src="..\src\assets\logo toky adriano.png" alt="im ff" />
+          <img src={logotokyadriano} alt="im ff" />
         </div>
         <div className="ligne"></div>
         <div className="footer-links">

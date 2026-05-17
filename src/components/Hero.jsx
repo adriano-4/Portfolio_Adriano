@@ -3,6 +3,7 @@ import { FaGithub, FaLinkedin, FaMailBulk, FaEnvelope } from "react-icons/fa";
 import { HiArrowRight } from "react-icons/hi";
 import ImageCV from "../components/ImageCV";
 import { useState } from "react";
+import profil from "../assets/profil.png";
 
 function Hero() {
   const [showCV, setShowCV] = useState(false);
@@ -65,7 +66,7 @@ function Hero() {
         {/* Côté droit : image de profil */}
         <div className="hero-image-wrapper">
           <img
-            src="../src/assets/profil.png"
+            src={profil}
             alt="Photo de profil de Toky Adriano"
             className="hero-image"
           />

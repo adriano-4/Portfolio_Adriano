@@ -1,17 +1,3 @@
-// function ImageCV() {
-//   return (
-//     <section id="cvimage" className="cvimage">
-//       <img
-//         src="/src/assets/cvAdrianoAvril2026.png"
-//         alt="CV Toky Adriano"
-//         className="cv-image"
-//       />
-//     </section>
-//   );
-// }
-
-// export default ImageCV;
-// components/ImageCV.jsx
 import { useState, useRef, useEffect } from "react";
 import {
   FaTimes,
@@ -20,6 +6,8 @@ import {
   FaSearchMinus,
   FaUndo,
 } from "react-icons/fa";
+
+import cvadriano from "../assets/cvAdrianoAvril2026.png";
 
 function ImageCV({ onClose }) {
   const [scale, setScale] = useState(1);
@@ -168,7 +156,7 @@ function ImageCV({ onClose }) {
         style={{ cursor: dragging ? "grabbing" : "grab" }}
       >
         <img
-          src="/src/assets/cvAdrianoAvril2026.png"
+          src={cvadriano}
           alt="CV Toky Adriano"
           className="cv-image"
           style={{

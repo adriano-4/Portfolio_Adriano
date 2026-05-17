@@ -682,7 +682,7 @@ img {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(26, 25, 83, 0.08);
+  /* box-shadow: 0 0 0 3px rgba(26, 25, 83, 0.08); */
 }
 
 .contact-success {
@@ -690,12 +690,13 @@ img {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: var(--spacing-md);
-  background-color: var(--color-accent-pale);
-  border: 2px solid var(--color-accent);
+  /* padding: var(--spacing-md); */
+  background-color: rgba(0, 211, 0, 0.073);
+  border: 1px solid rgb(0, 211, 0);
   border-radius: var(--radius-lg);
   color: var(--color-accent);
-  font-size: 1.1rem;
+  /* font-size: 1.1rem; */
+  padding: 10px 20px;
 }
 .envoyermess {
   border-radius: 10px;
@@ -1386,4 +1387,11 @@ img {
     height: 40px;
     font-size: 0.85rem;
   }
+}
+.btn.disabled {
+  opacity: 0.1;
+  cursor: not-allowed;
+}
+.btn.disabled:hover {
+  transform: translate(0);
 }

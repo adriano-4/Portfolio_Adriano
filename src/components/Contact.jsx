@@ -1,126 +1,3 @@
-// // components/Contact.jsx
-// import { useState } from "react";
-// import {
-//   FaUser,
-//   FaEnvelope,
-//   FaCommentDots,
-//   FaPaperPlane,
-//   FaCheckCircle,
-// } from "react-icons/fa";
-
-// function Contact() {
-//   const [formData, setFormData] = useState({
-//     name: "",
-//     email: "",
-//     message: "",
-//   });
-
-//   const [submitted, setSubmitted] = useState(false);
-
-//   function handleChange(e) {
-//     setFormData({
-//       ...formData,
-//       [e.target.name]: e.target.value,
-//     });
-//   }
-
-//   function handleSubmit(e) {
-//     e.preventDefault();
-//     console.log("Formulaire envoyé :", formData);
-//     setSubmitted(true);
-//     setFormData({ name: "", email: "", message: "" });
-//   }
-
-//   return (
-//     <section id="contact" className="contact">
-//       <h2 className="section-title">Contact</h2>
-//       <p className="section-subtitle">
-//         Une question ou un projet ? Écrivez-moi !
-//       </p>
-
-//       {submitted ? (
-//         <div className="contact-success">
-//           <FaCheckCircle
-//             style={{ marginRight: "8px", verticalAlign: "middle" }}
-//           />
-//           Message envoyé ! Je vous répondrai bientôt.
-//         </div>
-//       ) : (
-//         <form className="contact-form" onSubmit={handleSubmit}>
-//           {/* Champ Nom */}
-//           <div>
-//             <div className="form-row">
-//               <div className="form-group">
-//                 <label htmlFor="name">
-//                   <FaUser
-//                     style={{ marginRight: "6px", verticalAlign: "middle" }}
-//                   />
-//                   Nom
-//                 </label>
-//                 <input
-//                   type="text"
-//                   id="name"
-//                   name="name"
-//                   value={formData.name}
-//                   onChange={handleChange}
-//                   placeholder="Votre nom"
-//                   required
-//                 />
-//               </div>
-
-//               {/* Champ Email */}
-//               <div className="form-group">
-//                 <label htmlFor="email">
-//                   <FaEnvelope
-//                     style={{ marginRight: "6px", verticalAlign: "middle" }}
-//                   />
-//                   Email
-//                 </label>
-//                 <input
-//                   type="email"
-//                   id="email"
-//                   name="email"
-//                   value={formData.email}
-//                   onChange={handleChange}
-//                   placeholder="votre@email.com"
-//                   required
-//                 />
-//               </div>
-//             </div>
-
-//             {/* Champ Message */}
-//             <div className="form-group">
-//               <label htmlFor="message">
-//                 <FaCommentDots
-//                   style={{ marginRight: "6px", verticalAlign: "middle" }}
-//                 />
-//                 Message
-//               </label>
-//               <textarea
-//                 id="message"
-//                 name="message"
-//                 value={formData.message}
-//                 onChange={handleChange}
-//                 placeholder="Votre message..."
-//                 rows="5"
-//                 required
-//               />
-//             </div>
-//           </div>
-//           <button type="submit" className="btn envoyermess">
-//             Envoyer le message
-//             <FaPaperPlane
-//               style={{ marginLeft: "8px", verticalAlign: "middle" }}
-//             />
-//           </button>
-//         </form>
-//       )}
-//     </section>
-//   );
-// }
-
-// export default Contact;
-// components/Contact.jsx
 import { useState, useEffect, useRef } from "react";
 import {
   FaUser,
@@ -140,6 +17,38 @@ function Contact() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const isNameValid = formData.name.trim().length >= 2;
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
+  const isMessageValid = formData.message.trim().length >= 10;
+  const isFormValid = isNameValid && isEmailValid && isMessageValid;
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch("/api/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.error || "Erreur inconnue");
+
+      setSubmitted(true);
+      setFormData({ name: "", email: "", message: "" });
+    } catch (err) {
+      setError("Échec de l'envoi. Veuillez réessayer.");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   function handleChange(e) {
     setFormData({
@@ -207,8 +116,7 @@ function Contact() {
       observer.disconnect();
       window.removeEventListener("scroll", onScroll);
     };
-  }, [submitted]); // re-run when submitted changes so new element gets observed
-
+  }, [submitted]);
   return (
     <>
       <style>{`
@@ -240,9 +148,20 @@ function Contact() {
         {submitted ? (
           <div className="contact-success">
             <FaCheckCircle
-              style={{ marginRight: "8px", verticalAlign: "middle" }}
+              style={{
+                marginRight: "10px",
+                verticalAlign: "middle",
+                color: "rgb(0, 211, 0)",
+              }}
             />
-            Message envoyé ! Je vous répondrai bientôt.
+            <span
+              style={{
+                color: "rgb(0, 144, 0)",
+                fontSize: "15px",
+              }}
+            >
+              Message envoyé ! Je vous répondrai bientôt.
+            </span>
           </div>
         ) : (
           <form className="contact-form" onSubmit={handleSubmit}>
@@ -303,8 +222,16 @@ function Contact() {
                 />
               </div>
             </div>
-            <button type="submit" className="btn envoyermess">
-              Envoyer le message
+            {error && (
+              <p style={{ color: "red", marginBottom: "8px" }}>{error}</p>
+            )}
+
+            <button
+              type="submit"
+              className={`btn envoyermess${!isFormValid || loading ? " disabled" : ""}`}
+              disabled={!isFormValid || loading}
+            >
+              {loading ? "Envoi..." : "Envoyer le message"}
               <FaPaperPlane
                 style={{ marginLeft: "8px", verticalAlign: "middle" }}
               />

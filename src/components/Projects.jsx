@@ -1,6 +1,12 @@
 // components/Projects.jsx
 import { useEffect, useRef } from "react";
 import ProjectCard from "./Projetcard";
+import reg from "../assets/reg.png";
+import transrap from "../assets/transrap.png";
+import gestbu from "../assets/gestbu.png";
+import capa from "../assets/capa.png";
+import esffinal from "../assets/esffinal.png";
+import logofinallalaina from "../assets/logo final lalaina.jpg";
 
 function Projects() {
   const sectionRef = useRef(null);
@@ -13,7 +19,7 @@ function Projects() {
         "Application de gestion des activités agricoles dans les régions de Madagascar.",
       tags: ["React.JS", "Java Spring Boot", "PostgreSQL"],
       link: "https://github.com",
-      src: "../src/assets/reg.png",
+      src: reg,
       status: "Terminé",
     },
     {
@@ -33,7 +39,7 @@ function Projects() {
       tags: ["Vue.js", "Node.js", "MySQL", "Sass"],
       link: "https://github.com",
       status: "Terminé",
-      src: "../src/assets/transrap.png",
+      src: transrap,
     },
     {
       id: 4,
@@ -42,7 +48,7 @@ function Projects() {
         "Application de prevision de vente d'une année à partir de données des années précedentes avec visualisation des commandes et des stocks (commandes par période constante de 2mois)",
       tags: ["React", "Chart.js", "CSS"],
       link: "https://github.com",
-      src: "../src/assets/gestbu.png",
+      src: gestbu,
       status: "Terminé",
     },
     {
@@ -53,7 +59,7 @@ function Projects() {
       tags: ["Vue.js", "Java Spring Boot", "Sybase"],
       link: "https://github.com",
       status: "Terminé",
-      src: "../src/assets/capa.png",
+      src: capa,
     },
     {
       id: 6,
@@ -63,7 +69,7 @@ function Projects() {
       tags: ["Adobe Illustrator"],
       link: "https://github.com",
       status: "Terminé",
-      src: "../src/assets/esffinal.png",
+      src: esffinal,
     },
     {
       id: 7,
@@ -73,7 +79,7 @@ function Projects() {
       tags: ["Adobe Illustrator"],
       link: "https://github.com",
       status: "Terminé",
-      src: "../src/assets/logo final lalaina.jpg",
+      src: logofinallalaina,
     },
   ];
 

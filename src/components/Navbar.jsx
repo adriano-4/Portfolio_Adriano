@@ -6,6 +6,7 @@ import {
   FaTools,
   FaBriefcase,
 } from "react-icons/fa";
+import logotokyadriano from "../assets/logo toky adriano.png";
 
 function Navbar() {
   return (
@@ -13,10 +14,7 @@ function Navbar() {
       {/* Logo */}
       <div className="navbar-logo">
         <a href="#hero">
-          <img
-            src="../src/assets/logo toky adriano.png"
-            alt="Logo Toky Adriano"
-          />
+          <img src={logotokyadriano} alt="Logo Toky Adriano" />
         </a>
       </div>
 
